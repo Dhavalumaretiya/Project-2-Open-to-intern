@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+ const objectId = mongoose.Schema.Types.ObjectId
 
 const internSchema= new mongoose.Schema({
 
@@ -16,7 +16,7 @@ const internSchema= new mongoose.Schema({
         lowercase: true,
         unique: true,
         required: true,
-        validate: [validateEmail, 'Please fill a valid email address'],
+        // validate: [validateEmail, 'Please fill a valid email address'],
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
     },
 
@@ -24,12 +24,14 @@ const internSchema= new mongoose.Schema({
       {
           type: Number,
           required: true, 
-          match:/^(\([0-9]{2}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}/
+          match:[/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/, 'Please fill a valid number']
       },
-
-    //   logolink:{
-    //      required:true,
-    //   },
+        
+      collageId:{
+        type:objectId,
+        ref:'collageModel',
+        // required:true,
+      },
 
       isDeleted:{
           type:Boolean,
@@ -41,4 +43,4 @@ const internSchema= new mongoose.Schema({
 
 
 
-             module.exports=mongoose.model('myintern',internSchema)
+ module.exports= mongoose.model('myintern',internSchema)

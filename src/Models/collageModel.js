@@ -12,14 +12,15 @@ const collageschema= new mongoose.Schema({
         unique:true
      },
 
-      fulllname:
-      {
+      fullname:{
           type: String,
-          required: true, trim:true
+          required: true, 
       },
 
       logolink:{
-         required:true,
+        type: String,
+        required: true,
+        trim: true
       },
 
       isDeleted:{
@@ -32,4 +33,4 @@ const collageschema= new mongoose.Schema({
 
 
 
-             module.exports=mongoose.model('collageModel',collageschema)
+ module.exports=mongoose.model('collageModel',collageschema)

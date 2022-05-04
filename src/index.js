@@ -1,17 +1,19 @@
-const mongoose = require('mongoose')
-const express = require('express')
-const router = express.Router();
+const express=require("express");
+var bodyParser=require("body-parser")
+const route=require("./routes/routes.js");
 
 const app= express();
+const mongoose=require("mongoose")
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 
-mongoose.connect("mongodb+srv://FunctionUp-Uranium1:GQgLhymenkDpmdlI@cluster0.xmo61.mongodb.net/Parteek",{ useNewUrlParser:true})
+mongoose.connect("mongodb+srv://uranium:uranium@cluster0.pgmlm.mongodb.net/test",{ useNewUrlParser:true})
 
 .then(()=>console.log("Project Blogging Site - Database Connected"))
 .catch((err)=>console.log(err));
 
-
-app.use("/", router);
+app.use("/",route);
 
 
 
