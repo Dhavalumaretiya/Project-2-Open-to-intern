@@ -13,7 +13,7 @@ const createIntern = async function (req, res) {
     return res.status(201).send({
       status: true,
       message: `Sbgfuccessfully applied for internship at ${data.collegeName}.`,
-      data: internData,v g 
+      data: internData 
     });
   } catch (err) {
     console.log("This is the error :", err.message); 

@@ -5,31 +5,20 @@ const collegeController = require("../Controllers/collegeController");
 const internController = require("../Controllers/internController");
 
 const {
-  validateCollegeCreate,
-  collegeValidationResult,
-  validatedCollegeCreateDB,
-  validateCollegeDB,
-} = require("../../../validation/college");
-const {
-  validateIntern,
-  internValidationResult,
-  validateInternDB,
-} = require("../../../validation/intern");
+  validateCollegeCreate, collegeValidationResult, validatedCollegeCreateDB, validateCollegeDB,
+} = require("../Middleware/validation/college");
+
+const { validateIntern, internValidationResult,  validateInternDB,
+} = require("../Middleware/validation/intern");
 
 router.post(
-  "/functionup/colleges",
-  validateCollegeCreate,
-  collegeValidationResult,
-  validatedCollegeCreateDB,
-  collegeController.createCollege
+  "/functionup/colleges", validateCollegeCreate, collegeValidationResult, validatedCollegeCreateDB, collegeController.createCollege
 );
+
 router.post(
-  "/functionup/interns",
-  validateIntern,
-  internValidationResult,
-  validateInternDB,
-  internController.createIntern
+  "/functionup/interns", validateIntern, internValidationResult, validateInternDB, internController.createIntern
 );
+
 router.get(
   "/functionup/collegeDetails",
   validateCollegeDB,
