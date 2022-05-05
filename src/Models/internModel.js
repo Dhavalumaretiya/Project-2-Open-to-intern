@@ -1,46 +1,46 @@
-const mongoose = require('mongoose')
- const objectId = mongoose.Schema.Types.ObjectId
+const mongoose=require('mongoose')
 
-const internSchema= new mongoose.Schema({
+const internSchema=new mongoose.Schema({
 
-    name: {
+name:{
 
-        type: String,
-        required: true,
-        unique:true
-     },
+    type:String,
+    required:true,
+    trim:true
+},
+email:{
+    type:String,
+    required:true,
+    lowercase:true,
+    unique:true,
+  // match:  [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
 
-     email: {
-        type: String,
-        trim: true,
-        lowercase: true,
-        unique: true,
-        required: true,
-        // validate: [validateEmail, 'Please fill a valid email address'],
-        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
-    },
+},
+mobile:{
 
-      mobile:
-      {
-          type: Number,
-          required: true, 
-          match:[/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/, 'Please fill a valid number']
-      },
-        
-      collageId:{
-        type:objectId,
-        ref:'collageModel',
-        // required:true,
-      },
-
-      isDeleted:{
-          type:Boolean,
-          default:false,
-      },
-
-    },
-    {timestamps: true})
+    type:String,
+    unique:true,
+    required:true,
+  
+  // match:  /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/
 
 
 
- module.exports= mongoose.model('myintern',internSchema)
+},
+collageId:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'collageModel',
+    required:true
+},
+isDeleted:{
+    type:Boolean,
+    default:false
+}
+
+
+
+},{timestamps:true})
+
+
+
+module.exports= mongoose.model('myintern',internSchema)
