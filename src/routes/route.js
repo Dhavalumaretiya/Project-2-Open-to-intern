@@ -1,10 +1,38 @@
-const express = require('express');
+
+const express = require("express");
 const router = express.Router();
+const collegeController = require("../Controllers/collegeController");
+const internController = require("../Controllers/internController");
 
-const allcontroller = require("../Controller/allcontroller")
+const {
+  validateCollegeCreate,
+  collegeValidationResult,
+  validatedCollegeCreateDB,
+  validateCollegeDB,
+} = require("../../../validation/college");
+const {
+  validateIntern,
+  internValidationResult,
+  validateInternDB,
+} = require("../../../validation/intern");
 
-
-router.post('/post' , allcontroller.x1)
-router.post('/post2' , allcontroller.x2)
-
-module.exports=router;
+router.post(
+  "/functionup/colleges",
+  validateCollegeCreate,
+  collegeValidationResult,
+  validatedCollegeCreateDB,
+  collegeController.createCollege
+);
+router.post(
+  "/functionup/interns",
+  validateIntern,
+  internValidationResult,
+  validateInternDB,
+  internController.createIntern
+);
+router.get(
+  "/functionup/collegeDetails",
+  validateCollegeDB,
+  collegeController.getCollege
+);
+module.exports = router;
