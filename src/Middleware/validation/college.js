@@ -11,8 +11,8 @@ exports.validateCollegeCreate = [
     .not()
     .isNumeric()
     .withMessage("invalid name : numbers not allowed")
-    .isLength({ min: 4, max: 20 })
-    .withMessage("name must be within 5 to 20 characters"),
+    .isLength({ min: 3, max: 20 })
+    .withMessage("name must be within 4 to 20 characters"),
   check("fullName")
     .trim()
     .not()
